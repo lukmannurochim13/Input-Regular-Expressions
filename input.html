@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .text {
+        justify-content: center;
+        display: flex;
+      }
+      .text textarea {
+        background-color: yellow;
+        border: 4px solid black;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      .output {
+        border: 2px solid black;
+        background-color: yellow;
+        width: max-content;
+        display: flex;
+        margin: auto;
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 10px;
+      }
+      span {
+        background-color: yellow;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 3px solid black;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+      }
+      .all {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">Input your text</h1>
+    <div class="text">
+      <textarea
+        name=""
+        id="textArea"
+        cols="80"
+        rows="20"
+        onkeyup="input()"
+      ></textarea>
+    </div>
+    <div class="all">
+      <span id="outAngka">0 Huruf</span>
+      <span id="outSpace">0 Space</span>
+      <span id="outNumber">0 Number</span>
+      <span id="outuppercase">0 Uppercase</span>
+      <span id="outlowercase">0 Lowercase</span>
+      <span id="outsymbol">0 Symbol</span>
+    </div>
+    <script>
+      function input() {
+        const area = document.getElementById("textArea").value;
+        let space = 0,
+          number = 0,
+          uppercase = 0,
+          lowercase = 0,
+          symbol = 0;
+        for (let i = 0; i < area.length; i++) {
+          if (/[ ]/.test(area[i])) space++;
+          if (/[0-9]/.test(area[i])) number++;
+          if (/[A-Z]/.test(area[i])) uppercase++;
+          if (/[a-z]/.test(area[i])) lowercase++;
+          if (/[.*+?^${}()|[\]\\@!#$%^&*()<>,=+]/.test(area[i])) symbol++;
+        }
+        document.getElementById("outAngka").innerHTML = area.length + " Huruf";
+        document.getElementById("outSpace").innerHTML = space + " Space";
+        document.getElementById("outNumber").innerHTML = number + " Number";
+        document.getElementById("outuppercase").innerHTML =
+          uppercase + " Uppercase";
+        document.getElementById("outlowercase").innerHTML =
+          lowercase + " Lowercase";
+        document.getElementById("outsymbol").innerHTML = symbol + " Symbol";
+      }
+    </script>
+  </body>
+</html>
